@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "126513384618",
+    "firebase_url": "https://howkteamandroid-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "howkteamandroid",
+    "storage_bucket": "howkteamandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126513384618:android:b3ba0d7691bea433b294d3",
+        "android_client_info": {
+          "package_name": "com.example.howkteamandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126513384618-24jgep9ovg5vkn7lg551nr2vl301ko0m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3FdaelW430Yngk1Pnyi0Bb8KEATt-Acw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126513384618-24jgep9ovg5vkn7lg551nr2vl301ko0m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126513384618:android:c6cfbcfbb94c371cb294d3",
+        "android_client_info": {
+          "package_name": "com.example.se104_m21_pmcl_n10quanlysieuthi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126513384618-24jgep9ovg5vkn7lg551nr2vl301ko0m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3FdaelW430Yngk1Pnyi0Bb8KEATt-Acw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126513384618-24jgep9ovg5vkn7lg551nr2vl301ko0m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
