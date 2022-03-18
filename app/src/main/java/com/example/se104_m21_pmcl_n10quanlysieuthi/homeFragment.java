@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,12 +19,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class homeFragment extends Fragment {
 
     private View view;
     private ListView lstvPost;
+    private Button btnReceive;
 
     @Nullable
     @Override
@@ -31,13 +36,21 @@ public class homeFragment extends Fragment {
         view=inflater.inflate(R.layout.frag_home,container,false);
 
         lstvPost=view.findViewById(R.id.lstvPost);
-        ReceiveDataToDatabase();
+        btnReceive=view.findViewById(R.id.btnReceive);
+        btnReceive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ReceiveDataFromDatabase();
+                ReceiveDataFromDatabase();
+
+            }
+        });
 
 
         return inflater.inflate(R.layout.frag_home,container,false);
     }
 
-    private void ReceiveDataToDatabase(){
+    private void ReceiveDataFromDatabase(){
 
         FirebaseDatabase db = FirebaseDatabase.getInstance("https://howkteamandroid-default-rtdb.asia-southeast1.firebasedatabase.app/");
 
@@ -53,17 +66,28 @@ public class homeFragment extends Fragment {
                     listpost.clear();
                     for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                         listpost.add(snapshot.getValue(String.class));
+                        Toast.makeText(getContext(),snapshot.getValue(String.class),Toast.LENGTH_SHORT).show();
                     }
                     //txtvReceive.setText(dataSnapshot.child("Index").getValue(String.class));
                     adapterPost.notifyDataSetChanged();
                 }
-                listpost.add("nhu cc");
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
+
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date today = new Date();
+            String timeStamp=formatter.format(today);
+
+            FirebaseDatabase db = FirebaseDatabase.getInstance("https://howkteamandroid-default-rtdb.asia-southeast1.firebasedatabase.app/");
+
+            DatabaseReference dbrefNames=db.getReference("Meets7"/*Chỗ này là ID riêng biệt từng cuộc họp, nếu chưa tồn tại thì thêm vào*/)
+                    .child(timeStamp).child("Name");
+
         });
     }
 
