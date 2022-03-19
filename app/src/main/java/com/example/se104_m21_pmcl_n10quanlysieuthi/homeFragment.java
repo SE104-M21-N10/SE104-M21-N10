@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,34 +32,43 @@ public class homeFragment extends Fragment {
 
         view=inflater.inflate(R.layout.frag_home,container,false);
 
-        lstvPost=view.findViewById(R.id.lstvPost);
-        ReceiveDataToDatabase();
+        Button btnReceive=view.findViewById(R.id.btnReceive);
+        btnReceive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ReceiveDataFromDatabase();
+
+            }
+        });
+
 
 
         return inflater.inflate(R.layout.frag_home,container,false);
     }
 
-    private void ReceiveDataToDatabase(){
+    private void ReceiveDataFromDatabase(){
 
         FirebaseDatabase db = FirebaseDatabase.getInstance("https://howkteamandroid-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        DatabaseReference testretrieve=db.getReference("Danh sach mat hang").child("buoi");
 
-        final ArrayList<String> listpost=new ArrayList<>();
-        final ArrayAdapter adapterPost=new ArrayAdapter<String>(getContext(),R.layout.list_post,listpost);
-
+        lstvPost=view.findViewById(R.id.lstvPost);
+        final ArrayList<String> listposts=new ArrayList<>();
+        final ArrayAdapter adapterPost=new ArrayAdapter<String>(getContext(),R.layout.list_post,listposts);
         lstvPost.setAdapter(adapterPost);
-        DatabaseReference testretrieve=db.getReference("Danh sach mat hang").child("dua");
+
+        listposts.clear();
+        //txtvReceive.setText(dataSnapshot.child("Index").getValue(String.class));
+        listposts.add("aaaaaaa");
+        adapterPost.notifyDataSetChanged();
+
         testretrieve.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 if(dataSnapshot.exists()){
-                    listpost.clear();
-                    for(DataSnapshot snapshot:dataSnapshot.getChildren()){
-                        listpost.add(snapshot.getValue(String.class));
-                    }
-                    //txtvReceive.setText(dataSnapshot.child("Index").getValue(String.class));
-                    adapterPost.notifyDataSetChanged();
+
                 }
-                listpost.add("nhu cc");
+                Toast.makeText(getContext(),dataSnapshot.getValue(String.class) , Toast.LENGTH_SHORT).show();
             }
 
             @Override
