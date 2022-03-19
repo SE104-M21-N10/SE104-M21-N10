@@ -57,7 +57,7 @@ public class homeFragment extends Fragment {
         lstvPost.setAdapter(adapterPost);
 
         listposts.clear();
-        //txtvReceive.setText(dataSnapshot.child("Index").getValue(String.class));
+
         listposts.add("aaaaaaa");
         adapterPost.notifyDataSetChanged();
 
