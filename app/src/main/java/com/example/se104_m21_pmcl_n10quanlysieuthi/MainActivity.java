@@ -16,23 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frag_cont,new loginFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainScreen, new loginFragment(),null).commit();
 
-        BottomNavigationView bottomNavigationView=findViewById(R.id.navBar);
-        bottomNavigationView.setOnNavigationItemSelectedListener((new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment selectFrag=null;
-                switch(item.getItemId()){
-                    case R.id.homeItem:
-                        selectFrag=new homeFragment();
-                        break;
-                    case R.id.loginItem:
-                        selectFrag=new loginFragment();
-                        break;
-                }
-                getSupportFragmentManager().beginTransaction().replace(R.id.frag_cont,selectFrag).commit();
-                return true;
-            }
-        }));    }
+    }
 }
