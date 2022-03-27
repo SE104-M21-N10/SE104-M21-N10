@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
@@ -45,7 +47,16 @@ public class loginFragment extends Fragment {
                     if (txtAcc.getText().toString().compareTo(lstAcc.get(i).login) == 0) {
                         if(txtPass.getText().toString().compareTo(lstAcc.get(i).pass) == 0){
                             Toast.makeText(getContext(), "Succeed login", Toast.LENGTH_SHORT).show();
-                            getFragmentManager().beginTransaction().replace(R.id.mainScreen, new homeFragment(),null).commit();
+
+                            FragmentManager fragManage = getActivity().getSupportFragmentManager();
+                            FragmentTransaction fragTrans = fragManage.beginTransaction();
+
+                            homeFragment fragHome = (homeFragment) fragManage.findFragmentByTag("frgHome");
+                            if (fragHome == null) fragHome = new homeFragment();
+
+                            fragTrans.replace(R.id.contentContainer, fragHome, "frgHome")
+                                    .addToBackStack("backStack")
+                                    .commit();
 
                             return;
                         }
